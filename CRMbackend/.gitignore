@@ -1,3 +1,2 @@
 .env
-CRMbuyers.db
-node_modules
+.node_modules
