@@ -22,7 +22,12 @@ const PORT = 3100;
 const apiKey = process.env.GAPI;
 const spreadsheetId = process.env.SPREADSHEETID;
 
-app.use(cors());
+
+app.use(cors({
+    origin: 'https://biavteam.olmpgame.com', // Укажите ваш домен
+    methods: 'GET,POST',
+    credentials: true // если нужны куки
+}));
 app.use(bodyParser.json());
 
 initUsers();
