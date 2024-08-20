@@ -9,7 +9,7 @@ const BuyerDashboard = ({ username }) => {
   useEffect(() => {
     const fetchRecords = async () => {
       try {
-        const response = await axios.get(`http://localhost:3100/buyer/${username}/records`);
+        const response = await axios.get(`http://185.81.115.100:3100/buyer/${username}/records`);
         setRecords(response.data);
       
       } catch (err) {
@@ -32,7 +32,7 @@ const BuyerDashboard = ({ username }) => {
       <Typography variant="h5" gutterBottom>
         {username}
       </Typography>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{  borderRadius: 0, boxShadow:0 }}>
         <Table sx={{borderRadius:0, minWidth:650 }}>
           <TableHead>
             <TableRow>
