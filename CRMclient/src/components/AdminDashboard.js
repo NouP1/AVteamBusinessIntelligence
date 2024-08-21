@@ -11,7 +11,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchBuyers = async () => {
       try {
-        const response = await axios.get('http://185.81.115.100:3100/admin/buyers');
+        const response = await axios.get('/api/admin/buyers');
         setBuyers(response.data);
       } catch (err) {
         console.error(err);
@@ -23,7 +23,7 @@ const AdminDashboard = () => {
 
   const handleRowClick = async (buyer) => {
     try {
-      const response = await axios.get(`http://185.81.115.100:3100/buyer/${buyer.nameBuyer}/records`);
+      const response = await axios.get(`/api/buyer/${buyer.nameBuyer}/records`);
       const buyerDetails = {
         nameBuyer: buyer.nameBuyer,
         records: response.data,

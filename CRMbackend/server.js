@@ -23,11 +23,7 @@ const apiKey = process.env.GAPI;
 const spreadsheetId = process.env.SPREADSHEETID;
 
 
-app.use(cors({
-    origin: 'https://biavteam.olmpgame.com', // Укажите ваш домен
-    methods: 'GET,POST',
-    credentials: true // если нужны куки
-}));
+app.use(cors());
 app.use(bodyParser.json());
 
 initUsers();
@@ -104,7 +100,7 @@ async function getBuyerExpensesTotal(buyerName) {
    
 
 
-app.post('/login', async (req, res) => {
+app.post('/api/login', async (req, res) => {
   const { username, password } = req.body;
   console.log(`Пришел запрос на сервере\n${req.body.username}\n${req.body.password}`);
 
@@ -122,7 +118,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.get('/admin/buyers', async (req, res) => {
+app.get('/api/admin/buyers', async (req, res) => {
   try {
     const adminUser = await UserModel.findOne({ where: { role: 'admin' } });
 
@@ -156,7 +152,7 @@ app.get('/admin/buyers', async (req, res) => {
 
 
 
-app.post('/webhook/postback', async (req, res) => {
+app.post('/api/webhook/postback', async (req, res) => {
   try {
     const postData = req.body;  
     console.log('Новые данные для CRM:', postData);
@@ -204,7 +200,7 @@ app.post('/webhook/postback', async (req, res) => {
 
 
 
-app.get('/buyer/:username/records', async (req, res) => {
+app.get('/api/buyer/:username/records', async (req, res) => {
   try {
     const { username } = req.params;
     
