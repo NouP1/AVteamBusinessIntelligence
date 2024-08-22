@@ -11,10 +11,10 @@ const { google } = require('googleapis');
 const axios = require('axios');
 
 
+
 require('dotenv').config();
 
-//const cron = require('node-cron');
-//const moment = require('moment');
+
 
 const app = express();
 const PORT = 3100;
@@ -128,17 +128,21 @@ app.get('/api/admin/buyers', async (req, res) => {
         order: [['nameBuyer', 'ASC']]
       });
       
-      const currentDate = new Date().toISOString().split('T')[0];
-      
       const buyersWithExpenses = await Promise.all(buyers.map(async buyer => {
         const expenses = await getBuyerExpensesTotal(buyer.nameBuyer);
         const profit = buyer.countRevenue - expenses;
+        const Roi = (buyer.countRevenue - expenses) / expenses
+        const formatCurrency = (value) => {
+          return value < 0 ? `-$${Math.abs(value)}` : `$${value}`;
+        };
         
         return {
           ...buyer.dataValues,
           expenses: expenses || 0, 
-          profit: profit || buyer.countRevenue, 
-        };
+          profit: formatCurrency(profit), 
+          Roi:formatCurrency(Roi.toFixed(2))
+        };  
+      
       }));
       res.json(buyersWithExpenses);
     } else {
@@ -165,7 +169,7 @@ app.post('/api/webhook/postback', async (req, res) => {
       where: { nameBuyer: responsiblePerson },
       defaults: { nameBuyer: responsiblePerson, countRevenue: postData.payout, countFirstdeps:1}
   });
-  //const expenses = await getBuyerExpenses(req.params.username);
+  
 
     if (!created) {
         buyer.countRevenue += postData.payout;
@@ -211,10 +215,18 @@ app.get('/api/buyer/:username/records', async (req, res) => {
 
       const recordsWithExpenses = await Promise.all(records.map(async record => {
         const expenses = await getBuyerExpenses(username, record.date); 
+        const Roi = (record.income - expenses) / expenses
+        const profit = record.income - expenses;
+        const formatCurrency = (value) => {
+          return value < 0 ? `-$${Math.abs(value)}` : `$${value}`;
+        };
+
+
         return {
           ...record.toJSON(),
-          expenses: expenses,
-          profit: record.income - expenses, 
+          expenses: expenses ,
+          profit: formatCurrency(profit), 
+          Roi: formatCurrency(Roi.toFixed(2))
         };
       }));
 

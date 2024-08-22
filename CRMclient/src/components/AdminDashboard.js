@@ -54,9 +54,11 @@ const AdminDashboard = () => {
               {/* <TableCell align="left" sx={{border:'1px solid rgba(224, 224, 224, 1)'}} >ID</TableCell> */}
               <TableCell align="left" sx={{border:'1px solid rgba(224, 224, 224, 1)'}}>Name</TableCell>
               <TableCell align="left" sx={{border:'1px solid rgba(224, 224, 224, 1)'}}>Revenue</TableCell>
-              <TableCell align="left" sx={{border:'1px solid rgba(224, 224, 224, 1)'}}>Expenses</TableCell>
-              <TableCell align="left" sx={{border:'1px solid rgba(224, 224, 224, 1)'}}>Firstdeps</TableCell>
+              <TableCell align="left" sx={{border:'1px solid rgba(224, 224, 224, 1)'}}>Spent</TableCell>
               <TableCell align="left" sx={{border:'1px solid rgba(224, 224, 224, 1)'}}>Profit</TableCell>
+              <TableCell align="left" sx={{border:'1px solid rgba(224, 224, 224, 1)'}}>ROI</TableCell>
+              <TableCell align="left" sx={{border:'1px solid rgba(224, 224, 224, 1)'}}>FD</TableCell>
+              
             </TableRow>
           </TableHead>
           <TableBody >
@@ -80,9 +82,10 @@ const AdminDashboard = () => {
                 {/* <TableCell align="left" sx={{border:'1px solid rgba(224, 224, 224, 1)'}}>{buyer.id}</TableCell> */}
                 <TableCell align="left" sx={{border:'1px solid rgba(224, 224, 224, 1)'}}>{buyer.nameBuyer}</TableCell>
                 <TableCell align="left" sx={{border:'1px solid rgba(224, 224, 224, 1)'}}>{'$' + buyer.countRevenue}</TableCell>
-                <TableCell align="left" sx={{border:'1px solid rgba(224, 224, 224, 1)'}}>{'$' + buyer.expenses}</TableCell> {/* Если расходы отсутствуют, заменить '---' на реальные данные */}
+                <TableCell align="left" sx={{border:'1px solid rgba(224, 224, 224, 1)'}}>{'$' + buyer.expenses}</TableCell> 
+                <TableCell align="left" sx={{border:'1px solid rgba(224, 224, 224, 1)'}}>{buyer.profit}</TableCell>
+                <TableCell align="left" sx={{border:'1px solid rgba(224, 224, 224, 1)'}}>{buyer.Roi+'%'}</TableCell>
                 <TableCell align="left" sx={{border:'1px solid rgba(224, 224, 224, 1)'}}>{buyer.countFirstdeps}</TableCell>
-                <TableCell align="left" sx={{border:'1px solid rgba(224, 224, 224, 1)'}}>{'$' + buyer.profit}</TableCell> {/* Заменить на реальный расчет профита */}
               </TableRow>
               
             ))}
