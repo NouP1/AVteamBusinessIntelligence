@@ -140,7 +140,7 @@ app.get('/api/admin/buyers', async (req, res) => {
           ...buyer.dataValues,
           expenses: expenses || 0, 
           profit: formatCurrency(profit), 
-          Roi:formatCurrency(Roi.toFixed(2))
+          Roi:Roi.toFixed(2)
         };  
       
       }));
@@ -226,7 +226,7 @@ app.get('/api/buyer/:username/records', async (req, res) => {
           ...record.toJSON(),
           expenses: expenses ,
           profit: formatCurrency(profit), 
-          Roi: formatCurrency(Roi.toFixed(2))
+          Roi: Roi.toFixed(2)
         };
       }));
 
