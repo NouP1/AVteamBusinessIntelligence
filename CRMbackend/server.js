@@ -131,7 +131,7 @@ app.get('/api/admin/buyers', async (req, res) => {
       const buyersWithExpenses = await Promise.all(buyers.map(async buyer => {
         const expenses = await getBuyerExpensesTotal(buyer.nameBuyer);
         const profit = buyer.countRevenue - expenses;
-        const Roi = (buyer.countRevenue - expenses) / expenses
+        const Roi = (buyer.countRevenue - expenses) / expenses *100
         const formatCurrency = (value) => {
           return value < 0 ? `-$${Math.abs(value)}` : `$${value}`;
         };
@@ -215,7 +215,7 @@ app.get('/api/buyer/:username/records', async (req, res) => {
 
       const recordsWithExpenses = await Promise.all(records.map(async record => {
         const expenses = await getBuyerExpenses(username, record.date); 
-        const Roi = (record.income - expenses) / expenses
+        const Roi = (record.income - expenses) / expenses*100
         const profit = record.income - expenses;
         const formatCurrency = (value) => {
           return value < 0 ? `-$${Math.abs(value)}` : `$${value}`;
