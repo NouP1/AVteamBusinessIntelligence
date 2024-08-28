@@ -16,10 +16,10 @@ const buyer5 = process.env.B5;
     // Создание пользователей
     await UserModel.bulkCreate([
       { username: 'admin', password: admin, role: 'admin' },
-      { username: 'buyer1', password: buyer1, role: 'buyer', name: 'Artur' },
+      { username: 'id3', password: buyer1, role: 'buyer', name: 'Artur' },
       { username: 'buyer2', password: buyer2, role: 'buyer', name: 'Anton' },
       { username: 'buyer3', password: buyer3, role: 'buyer', name: 'Vova' },
-      { username: 'buyer4', password: buyer4, role: 'buyer', name: 'Pasha' },
+      { username: 'id4', password: buyer4, role: 'buyer', name: 'Pasha' },
       { username: 'buyer5', password: buyer5, role: 'buyer', name: 'Iliya' },
     ]);
 
